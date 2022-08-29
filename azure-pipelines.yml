@@ -11,6 +11,15 @@ pool:
 
 steps:
 - task: Maven@3
+- task: Ant@1
+  inputs:
+    buildFile: 'build.xml'
+    options: '$(system.collectionId)***)'
+    targets: 'default'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    testRunTitle: 'ss'
+    javaHomeOption: 'JDKVersion'
   inputs:
     mavenPomFile: 'pom.xml'
     mavenOptions: '-Xmx3072m'
